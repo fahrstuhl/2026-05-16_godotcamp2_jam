@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://xard313fifdo"]
+
+[ext_resource type="Script" uid="uid://dhndx7jh8xi8x" path="res://enemy.gd" id="1_7k104"]
+[ext_resource type="Texture2D" uid="uid://bj4b5fj8flbfo" path="res://outcast_00.png" id="2_e1ltt"]
+[ext_resource type="Texture2D" uid="uid://brgkgdm1b6gbq" path="res://bmonkey_00.png" id="2_epg4t"]
+[ext_resource type="Texture2D" uid="uid://78thutc5i72k" path="res://bmonkey_01.png" id="3_3yqyl"]
+[ext_resource type="Texture2D" uid="uid://caqunm5sqm7l2" path="res://outcast_02.png" id="3_dxifv"]
+[ext_resource type="Texture2D" uid="uid://cqhngo0qlt1d6" path="res://outcast_01.png" id="4_pwjut"]
+[ext_resource type="Texture2D" uid="uid://bu3011wc1oc42" path="res://bmonkey_02.png" id="4_wujgv"]
+[ext_resource type="Texture2D" uid="uid://b7jsvps1salvj" path="res://bmonkey_03.png" id="5_hb8ge"]
+[ext_resource type="Texture2D" uid="uid://d3qwmlyfieq4s" path="res://outcast_03.png" id="5_n0g06"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e1ltt"]
+size = Vector3(1.6247314, 1.8, 2.1914551)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ar8e5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_e1ltt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dxifv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pwjut")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_n0g06")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dxifv"]
+size = Vector3(1.4, 1.9, 1.4)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e1ltt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_epg4t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3yqyl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wujgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hb8ge")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="CharacterBody3D" unique_id=1131300516]
+script = ExtResource("1_7k104")
+topdown = true
+
+[node name="TopdownShape" type="CollisionShape3D" parent="." unique_id=1429312880]
+shape = SubResource("BoxShape3D_e1ltt")
+
+[node name="Sprite3D" type="AnimatedSprite3D" parent="TopdownShape" unique_id=1050409175]
+transform = Transform3D(3, 0, 0, 0, -0.088998854, 2.9986796, 0, -2.9986796, -0.088998854, 0, 0, 0)
+axis = 1
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_ar8e5")
+frame_progress = 0.058543768
+
+[node name="FPSShape" type="CollisionShape3D" parent="." unique_id=1470765697]
+shape = SubResource("BoxShape3D_dxifv")
+
+[node name="Sprite3D" type="AnimatedSprite3D" parent="FPSShape" unique_id=1773441932]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_e1ltt")
+frame_progress = 0.90947235
+
+[node name="Retarget" type="Timer" parent="." unique_id=18964431]
+autostart = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=2008513541]
